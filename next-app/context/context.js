@@ -10,7 +10,9 @@ export const AppContext = createContext()
 export const AppProvider = ({ children }) => {
   const [posts, setPosts] = useState([])
   const [userAddress, setUserAddress] = useState('')
+  const [tip, setTip] = useState(1)
 
+  // Account hook from wagmi to get the current account address that is in USE
   const { address } = useAccount()
   console.log(address);
   useEffect(() => {
@@ -25,13 +27,20 @@ export const AppProvider = ({ children }) => {
 
   const getAllImages = async () => {
     console.log('getting images')
+
+
     const contract = createContract()
+    console.log("Contract : ", contract);
+    //get image count from contract using 
     const imageCount = await contract.methods.imageCount().call()
+    //This calls the imageCount() function of the contract instance to get the total number of images stored on the blockchain.
     console.log(imageCount);
     let newPosts = []
 
     for (let index = 1; index <= imageCount; index++) {
       const image = await contract.methods.images(index).call()
+
+      console.log(image);
 
       newPosts.push({
         id: image.id,
@@ -52,10 +61,14 @@ export const AppProvider = ({ children }) => {
     if (!address) return
     const contract = createContract()
     console.log(imgUrl, caption);
+
+
+
     const data = contract.methods.uploadImage(imgUrl, caption).send({
       from: address,
       gas: 3000000,
     })
+
 
     await toast.promise(data, {
       pending: 'Uploading image... This can take a minute ⏳',
@@ -70,7 +83,8 @@ export const AppProvider = ({ children }) => {
     const { ethereum } = window
     if (ethereum) {
       const contract = createContract()
-      const amount = Web3.utils.toWei('0.01', 'ether')
+      //0.01 ETH in wei
+      const amount = Web3.utils.toWei(tip.toString(), 'ether')
 
       const tx = contract.methods.tipImageOwner(imageId).send({
         from: address,
@@ -88,7 +102,7 @@ export const AppProvider = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{ posts, userAddress, tipOwner, uploadImage }}>
+    <AppContext.Provider value={{ posts, userAddress,tip, tipOwner, uploadImage }}>
       {children}
     </AppContext.Provider>
   )

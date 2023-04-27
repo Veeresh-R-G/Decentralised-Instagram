@@ -13,7 +13,9 @@ contract Instagram {
 
     uint256 public imageCount = 0;
 
+    //images that maps image IDs to their respective Image struct instances.
     mapping(uint256 => Image) public images;
+    //images = {id : Image}
 
     event ImageCreated(
         uint256 id,

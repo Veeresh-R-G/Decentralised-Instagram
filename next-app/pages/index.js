@@ -37,7 +37,7 @@ const Home = () => {
             <FeedItem data={item} key={index} />
           ))}
         </div>
-        <HomeRightBar data={data.suggestions} />
+        {/* <HomeRightBar data={data.suggestions} /> */}
       </Layout>
     </>
   )

@@ -6,7 +6,7 @@ const Border = ({ children, border = false, ...props }) => {
       {...props}
       className={customClass}
       style={{
-        border: border && '1px solid #dbdbdb',
+        border: border && '0px solid #dbdbdb',
         borderRadius: border && 3,
         backgroundColor: border && 'white',
       }}

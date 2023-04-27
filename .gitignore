@@ -28,6 +28,7 @@ yarn-error.log*
 # local env files
 .env*.local
 
+.vscode
 # vercel
 .vercel
 
@@ -41,3 +42,6 @@ next-env.d.ts
 # lock files
 yarn.lock
 package-lock.json
+
+# Ignore .vscode settings
+.vscode/*

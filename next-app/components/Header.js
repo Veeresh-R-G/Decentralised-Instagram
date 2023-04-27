@@ -18,7 +18,7 @@ import { IoPaperPlaneOutline } from 'react-icons/io5'
 Modal.setAppElement('#__next')
 
 
-const uploader = new Uploader({ apiKey: process.env.UPLOAD_IO_API_KEY }); 
+const uploader = new Uploader({ apiKey: "public_12a1yA28WbK8Su7dg1fnHmLUC1Ya" }); 
 
 const style = {
   wrapper: `navigation fixed z-20 top-0`,
@@ -31,7 +31,7 @@ const style = {
 
 const Header = () => {
   const router = useRouter()
- 
+  const [open , setOpen] = React.useState(false)
   const openUploader = () => {
     {
       uploader.open({ maxFileCount: 1 }).then(
@@ -82,7 +82,10 @@ const Header = () => {
           <AiOutlineCloudUpload
             className={style.headerIcon}
             size={22}
-            onClick={openUploader}
+            onClick={() => 
+            {
+              setOpen(!open)
+            }}
           />
           
 
@@ -90,12 +93,12 @@ const Header = () => {
         </div>
       </div>
       <Modal
-        isOpen={router.query.image}
+        isOpen={open}
         onRequestClose={() => router.push('/')}
         style={modalStyles}
       >
        
-       <UploadModal />
+       <UploadModal open={open} setOpen={setOpen} />
       </Modal>
       
     </nav>

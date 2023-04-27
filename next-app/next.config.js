@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  env: {
+    API_KEY: process.env.API_KEY,
+    API_SECRET: process.env.API_SECRET
+  },
   swcMinify: true,
   images: {
     domains: [
@@ -13,6 +17,7 @@ const nextConfig = {
       'picsum.photos',
       'avatars.dicebear.com',
       'upcdn.io',
+      'gateway.pinata.cloud'
     ],
   },
 }

@@ -11,8 +11,12 @@ import {
   darkTheme,
 } from '@rainbow-me/rainbowkit'
 
+
 import { infuraProvider } from 'wagmi/providers/infura'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
+
+// set up a configuration for multiple blockchain networks.
+// in this case, we're using goerli and localhost
 
 const { chains, provider } = configureChains(
   [chain.goerli, chain.localhost],
@@ -27,14 +31,21 @@ const { chains, provider } = configureChains(
   ],
 )
 
+// set up a default wallet for each network
 const { connectors } = getDefaultWallets({
   appName: 'Instagram',
   chains,
 })
 
+// create a wagmi client with the connectors and provider
 const wagmiClient = createClient({
+  
   autoConnect: true,
+
+  // Connectors are used to connect to wallets
   connectors,
+
+  // Provider is used to connect to the blockchain network
   provider,
 })
 

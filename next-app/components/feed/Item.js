@@ -15,13 +15,13 @@ const style = {
 }
 
 const FeedItem = ({ data }) => {
-  const { userAddress } = useAppContext()
+  const { userAddress,tip } = useAppContext()
   const [randomLikeNumber, setRandomLikeNumber] = useState(0)
 
   useEffect(() => {
     setRandomLikeNumber(Math.floor(Math.random() * 100))
   }, [])
-
+  console.log(tip)
   return (
     <Border className={style.wrapper}>
       <PostHeader username={truncateEthAddress(data.author)} />
@@ -29,7 +29,11 @@ const FeedItem = ({ data }) => {
 
       <ActionButtons id={data.id} className={style.buttonsContainer} />
 
-      <a className={style.likesContainer}>{randomLikeNumber} likes</a>
+      <a className={style.likesContainer}>
+      
+      {data.totalTipped/(1000000000000000000*tip)} Tip{data.totalTipped/(1000000000000000000*tip)>1?"s":""}
+      
+      </a>
 
       <Caption
         data={{

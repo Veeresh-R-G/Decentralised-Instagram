@@ -9,22 +9,7 @@ const style = {
 
 const RightBarSuggestions = ({ data }) => {
   return (
-    <div className={style.wrapper}>
-      <div className={style.titleContainer}>
-        <span className={style.title}>Suggestions For You</span>
-        <Link href='#' className='text-12-bold'>
-          See All
-        </Link>
-      </div>
-      <div
-        className='right-bar-suggestions'
-        style={{ paddingBottom: 8, paddingTop: 8 }}
-      >
-        {data.map(item => {
-          return <SuggestionItem data={item} key={item.username} />
-        })}
-      </div>
-    </div>
+  <></>
   )
 }
 
