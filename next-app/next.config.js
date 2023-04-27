@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     API_KEY: process.env.API_KEY,
-    API_SECRET: process.env.API_SECRET
+    API_SECRET: process.env.API_SECRET,
+    UPLOAD_IO_API_KEY: process.env.UPLOAD_IO_API_KEY
   },
   swcMinify: true,
   images: {

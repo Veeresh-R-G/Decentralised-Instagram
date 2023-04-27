@@ -18,7 +18,7 @@ import { IoPaperPlaneOutline } from 'react-icons/io5'
 Modal.setAppElement('#__next')
 
 
-const uploader = new Uploader({ apiKey: "public_12a1yA28WbK8Su7dg1fnHmLUC1Ya" }); 
+const uploader = new Uploader({ apiKey: process.env.UPLOAD_IO_API_KEY }); 
 
 const style = {
   wrapper: `navigation fixed z-20 top-0`,
